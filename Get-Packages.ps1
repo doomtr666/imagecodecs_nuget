@@ -29,12 +29,6 @@ Unzip "$PWD\zlib1211.zip" "$PWD"
 rni zlib-1.2.11 zlib
 rm zlib1211.zip
 
-# xz utils 5.2.3
-echo "Fetching xz utils 5.2.3"
-Download "https://tukaani.org/xz/xz-5.2.3-windows.zip" "xz-5.2.3-windows.zip"
-Unzip "$PWD\xz-5.2.3-windows.zip" "$PWD\xz"
-rm $PWD\xz-5.2.3-windows.zip
-
 # libpng 1.6.30
 echo "Fetching libpng 1.6.30"
 Download "http://prdownloads.sourceforge.net/libpng/lpng1630.zip?download" "lpng1630.zip"
