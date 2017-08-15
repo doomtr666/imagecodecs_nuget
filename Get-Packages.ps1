@@ -29,6 +29,12 @@ Unzip "$PWD\zlib1211.zip" "$PWD"
 rni zlib-1.2.11 zlib
 rm zlib1211.zip
 
+# xz 5.2.3
+git clone https://git.tukaani.org/xz.git xz
+cd xz
+git checkout v5.2.3
+cd ..
+
 # libpng 1.6.30
 echo "Fetching libpng 1.6.30"
 Download "http://prdownloads.sourceforge.net/libpng/lpng1630.zip?download" "lpng1630.zip"

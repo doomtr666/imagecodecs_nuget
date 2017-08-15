@@ -33,11 +33,20 @@ function CMakeBuild([string]$lib, [string]$platform, [string]$config)
 	cd $current_dir
 }
 
+<#
+
 # zlib
 CMakeBuild zlib x64 release
 CMakeBuild zlib x64 debug
 CMakeBuild zlib x86 release
 CMakeBuild zlib x86 debug
+
+# xz
+cp xz_build\* sources\xz\
+CMakeBuild xz x64 release
+CMakeBuild xz x64 debug
+CMakeBuild xz x86 release
+CMakeBuild xz x86 debug
 
 # libpng
 CMakeBuild libpng x64 release -DZLIB_LIBRARY="$PWD\x64\release\zlib\lib\zlib.lib" -DZLIB_INCLUDE_DIR="$PWD\x64\release\zlib\include\"
@@ -52,8 +61,11 @@ CMakeBuild jpeg x64 debug
 CMakeBuild jpeg x86 release
 CMakeBuild jpeg x86 debug
 
+#>
+
 # tiff
-CMakeBuild tiff x64 release -DZLIB_LIBRARY="$PWD\x64\release\zlib\lib\zlib.lib" -DZLIB_INCLUDE_DIR="$PWD\x64\release\zlib\include\" -DJPEG_LIBRARY="$PWD\x64\release\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x64\release\jpeg\include\"
-CMakeBuild tiff x64 debug -DZLIB_LIBRARY="$PWD\x64\debug\zlib\lib\zlibd.lib" -DZLIB_INCLUDE_DIR="$PWD\x64\debug\zlib\include\" -DJPEG_LIBRARY="$PWD\x64\debug\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x64\debug\jpeg\include\"
-CMakeBuild tiff x86 release -DZLIB_LIBRARY="$PWD\x86\release\zlib\lib\zlib.lib" -DZLIB_INCLUDE_DIR="$PWD\x86\release\zlib\include\" -DJPEG_LIBRARY="$PWD\x86\release\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x86\release\jpeg\include\"
-CMakeBuild tiff x86 debug -DZLIB_LIBRARY="$PWD\x86\debug\zlib\lib\zlibd.lib" -DZLIB_INCLUDE_DIR="$PWD\x86\debug\zlib\include\" -DJPEG_LIBRARY="$PWD\x86\debug\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x86\debug\jpeg\include\"
+CMakeBuild tiff x64 release -DZLIB_LIBRARY="$PWD\x64\release\zlib\lib\zlib.lib" -DZLIB_INCLUDE_DIR="$PWD\x64\release\zlib\include\" -DJPEG_LIBRARY="$PWD\x64\release\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x64\release\jpeg\include\" -DLIBLZMA_INCLUDE_DIR="$PWD\x64\release\xz\include\" -DLIBLZMA_LIBRARY="$PWD\x64\release\xz\lib\lzma.lib" -D LIBLZMA_HAS_AUTO_DECODER=true -DLIBLZMA_HAS_EASY_ENCODER=true -DLIBLZMA_HAS_LZMA_PRESET=true
+CMakeBuild tiff x64 debug -DZLIB_LIBRARY="$PWD\x64\debug\zlib\lib\zlibd.lib" -DZLIB_INCLUDE_DIR="$PWD\x64\debug\zlib\include\" -DJPEG_LIBRARY="$PWD\x64\debug\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x64\debug\jpeg\include\" -DLIBLZMA_INCLUDE_DIR="$PWD\x64\release\xz\include\" -DLIBLZMA_LIBRARY="$PWD\x64\debug\xz\lib\lzmad.lib" -D LIBLZMA_HAS_AUTO_DECODER=true -DLIBLZMA_HAS_EASY_ENCODER=true -DLIBLZMA_HAS_LZMA_PRESET=true
+CMakeBuild tiff x86 release -DZLIB_LIBRARY="$PWD\x86\release\zlib\lib\zlib.lib" -DZLIB_INCLUDE_DIR="$PWD\x86\release\zlib\include\" -DJPEG_LIBRARY="$PWD\x86\release\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x86\release\jpeg\include\" -DLIBLZMA_INCLUDE_DIR="$PWD\x86\release\xz\include\" -DLIBLZMA_LIBRARY="$PWD\x86\release\xz\lib\lzma.lib" -D LIBLZMA_HAS_AUTO_DECODER=true -DLIBLZMA_HAS_EASY_ENCODER=true -DLIBLZMA_HAS_LZMA_PRESET=true
+CMakeBuild tiff x86 debug -DZLIB_LIBRARY="$PWD\x86\debug\zlib\lib\zlibd.lib" -DZLIB_INCLUDE_DIR="$PWD\x86\debug\zlib\include\" -DJPEG_LIBRARY="$PWD\x86\debug\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x86\debug\jpeg\include\" -DLIBLZMA_INCLUDE_DIR="$PWD\x86\debug\xz\include\" -DLIBLZMA_LIBRARY="$PWD\x86\debug\xz\lib\lzmad.lib" -D LIBLZMA_HAS_AUTO_DECODER=true -DLIBLZMA_HAS_EASY_ENCODER=true -DLIBLZMA_HAS_LZMA_PRESET=true
+
