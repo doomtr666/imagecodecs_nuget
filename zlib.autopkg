@@ -1,0 +1,58 @@
+configurations {
+   Toolset {
+      key : "PlatformToolset";
+         choices: { v141, v140 };
+   };
+}
+
+nuget {
+
+   nuspec {
+      id = zlib_native;
+      version : 1.2.11;
+      title:  "zlib for VS2015+";
+      authors: { Jean-loup Gailly, Mark Adler };
+      licenseUrl: "https://zlib.net/zlib_license.html";
+      projectUrl: "https://zlib.net/";
+      iconUrl: "https://zlib.net/images/zlib3d-b1.png";
+      requireLicenseAcceptance:false;
+      summary: "zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- lossless data-compression library for use on virtually any computer hardware and operating system.";
+	   copyright: "Copyright (C) 1995-2006, 2010, 2011, 2012, 2016 Mark Adler";
+      description: "zlib for VS2015+";
+      releaseNotes: "First package version.";
+      tags: { native };
+   };
+ 
+   files {
+
+      i1: {
+         #destination = ${d_include}\;
+         "x64\debug\zlib\include\*.h"
+      };
+
+      [x86,release] {
+        lib: { "x86\release\zlib\lib\zlib.lib" };
+        bin: { "x86\release\zlib\bin\zlib.dll" };
+      };
+ 
+      [x86,debug] {
+        lib: { "x86\debug\zlib\lib\zlibd.lib" };
+        bin: { "x86\debug\zlib\bin\zlibd.dll" };
+      };
+
+      [x64,release] {
+        lib: { "x64\release\zlib\lib\zlib.lib" };
+        bin: { "x64\release\zlib\bin\zlib.dll" };
+      };
+ 
+      [x64,debug] {
+        lib: { "x64\debug\zlib\lib\zlibd.lib" };
+        bin: { "x64\debug\zlib\bin\zlibd.dll" };
+      };
+
+   };
+
+   targets {
+     Defines += HAS_ZLIB;
+   };
+}

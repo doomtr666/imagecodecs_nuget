@@ -33,8 +33,6 @@ function CMakeBuild([string]$lib, [string]$platform, [string]$config)
 	cd $current_dir
 }
 
-<#
-
 # zlib
 CMakeBuild zlib x64 release
 CMakeBuild zlib x64 debug
@@ -60,8 +58,6 @@ CMakeBuild jpeg x64 release
 CMakeBuild jpeg x64 debug
 CMakeBuild jpeg x86 release
 CMakeBuild jpeg x86 debug
-
-#>
 
 # tiff
 CMakeBuild tiff x64 release -DZLIB_LIBRARY="$PWD\x64\release\zlib\lib\zlib.lib" -DZLIB_INCLUDE_DIR="$PWD\x64\release\zlib\include\" -DJPEG_LIBRARY="$PWD\x64\release\jpeg\lib\libjpeg.lib" -DJPEG_INCLUDE_DIR="$PWD\x64\release\jpeg\include\" -DLIBLZMA_INCLUDE_DIR="$PWD\x64\release\xz\include\" -DLIBLZMA_LIBRARY="$PWD\x64\release\xz\lib\lzma.lib" -D LIBLZMA_HAS_AUTO_DECODER=true -DLIBLZMA_HAS_EASY_ENCODER=true -DLIBLZMA_HAS_LZMA_PRESET=true
